@@ -1,20 +1,23 @@
 import styles from "./MealItem.module.css";
 import classes from "./MealItemForm.module.css";
-import React from 'react';
+import Input from "./Input";
+import React from "react";
 
 function MealIndividual(props) {
   return (
     <React.Fragment>
       <div className={styles.meal}>
         <ul>
-          <li>{props.name}</li>
-          <li>{props.description}</li>
-          <li>{props.price}</li>
+          <li>
+            <h3>{props.name}</h3>
+          </li>
+          <li className={styles.description}>{props.description}</li>
+          <li className={styles.price}>{props.price}</li>
         </ul>
-      </div>
-      <div className={classes.form}>
-        <label for="add">Amount</label>
-        <input type="number" id="add"/>
+        <div className={classes.form}>
+          <Input />
+          <button>+Add</button>
+        </div>
       </div>
     </React.Fragment>
   );
