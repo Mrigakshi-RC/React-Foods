@@ -15,8 +15,8 @@ function MealIndividual(props) {
           <li className={styles.price}>{props.price}</li>
         </ul>
         <div className={classes.form}>
-          <Input />
-          <button>+Add</button>
+          <Input value={props.count}/>
+          <button >+Add</button>
         </div>
       </div>
     </React.Fragment>
