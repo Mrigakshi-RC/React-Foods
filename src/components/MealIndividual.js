@@ -8,6 +8,7 @@ function MealIndividual(props) {
   function clickHandler(){
     setCount(count+1);
   }
+
   return (
     <React.Fragment>
       <div className={styles.meal}>
@@ -19,7 +20,7 @@ function MealIndividual(props) {
           <li className={styles.price}>{props.price}</li>
         </ul>
         <div className={classes.form}>
-          <Input value={count}/>
+          <Input counts={count}/>
           <button onClick={clickHandler}>+Add</button>
         </div>
       </div>

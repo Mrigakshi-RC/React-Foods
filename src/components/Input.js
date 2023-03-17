@@ -2,10 +2,11 @@ import inputs from "./Input.module.css";
 import React from "react";
 
 function Input(props) {
+  const doSomething=()=>{};
   return (
     <div className={inputs.input}>
-      <label for="add">Amount</label>
-      <input type="number" id="add" value={props.value}/>
+      <label htmlFor="add">Amount</label>
+      <input onChange={doSomething} type="number" id="add" value={props.counts}/>
     </div>
   );
 }
