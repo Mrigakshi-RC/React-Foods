@@ -1,9 +1,13 @@
 import styles from "./MealItem.module.css";
 import classes from "./MealItemForm.module.css";
 import Input from "./Input";
-import React from "react";
+import React, {useState} from "react";
 
 function MealIndividual(props) {
+  const [count,setCount]=useState(0);
+  function clickHandler(){
+    setCount(count+1);
+  }
   return (
     <React.Fragment>
       <div className={styles.meal}>
@@ -15,8 +19,8 @@ function MealIndividual(props) {
           <li className={styles.price}>{props.price}</li>
         </ul>
         <div className={classes.form}>
-          <Input value={props.count}/>
-          <button >+Add</button>
+          <Input value={count}/>
+          <button onClick={clickHandler}>+Add</button>
         </div>
       </div>
     </React.Fragment>
