@@ -20,6 +20,31 @@
     z-index: 30;
     animation: slide-down 300ms ease-out forwards;
   }
+
+  .totalContainer{
+    display:flex;
+    justify-content:space-between;
+  }
+
+  .buttonContainer{
+    text-align:right;
+  }
+
+  .order,.close {
+    font: inherit;
+    cursor: pointer;
+    background-color: #8a2b06;
+    border: 1px solid #8a2b06;
+    color: white;
+    padding: 0.25rem 2rem;
+    border-radius: 20px;
+    font-weight: bold;
+    margin-left:1rem;
+  }
+  .close{
+    background-color:transparent;
+    color:#8a2b06;
+  }
   
   @media (min-width: 768px) {
     .modal {
