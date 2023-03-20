@@ -9,11 +9,11 @@ function Header(props) {
     <React.Fragment>
       <header className={styles.header}>
         <h1>ReactMeals</h1>
-        <div className={classes.button} onClick={props.cartClick}>
+        <button className={classes.button} onClick={props.cartClick}>
           <CartIcon className={classes.icon}/>
           <p>Your Cart</p>
           <div className={classes.badge}>0</div>
-        </div>
+        </button>
       </header>
       <div className={styles.mainImage}>
         <img src={background} alt="background"></img>

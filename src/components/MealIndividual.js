@@ -11,19 +11,17 @@ function MealIndividual(props) {
 
   return (
     <React.Fragment>
-      <div className={styles.meal}>
-        <ul>
-          <li>
-            <h3>{props.name}</h3>
-          </li>
-          <li className={styles.description}>{props.description}</li>
-          <li className={styles.price}>{props.price}</li>
-        </ul>
+      <li className={styles.meal}>
+        <div>
+          <h3>{props.name}</h3>
+          <div className={styles.description}>{props.description}</div>
+          <div className={styles.price}>{props.price}</div>
+        </div>
         <div className={classes.form}>
-          <Input counts={count}/>
+          <Input counts={count} id={props.id}/>
           <button onClick={clickHandler}>+Add</button>
         </div>
-      </div>
+      </li>
     </React.Fragment>
   );
 }

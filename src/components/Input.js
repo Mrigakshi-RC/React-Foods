@@ -4,10 +4,10 @@ import React from "react";
 function Input(props) {
   const doSomething=()=>{};
   return (
-    <div className={inputs.input}>
+    <form className={inputs.input}>
       <label htmlFor="add">Amount</label>
-      <input onChange={doSomething} type="number" id="add" value={props.counts}/>
-    </div>
+      <input onChange={doSomething} type="number" id={props.id} value={props.counts}/>
+    </form>
   );
 }
 
