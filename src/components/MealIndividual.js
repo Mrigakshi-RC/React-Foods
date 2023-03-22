@@ -1,13 +1,31 @@
 import styles from "./MealItem.module.css";
 import classes from "./MealItemForm.module.css";
 import Input from "./Input";
-import React, {useState} from "react";
+import React, {useState, useRef} from "react";
+import { useContext } from "react";
+import CartContext from "../store/cart-context";
 
 function MealIndividual(props) {
-  const [count,setCount]=useState(0);
-  function clickHandler(){
-    setCount(count+1);
-  }
+  const cartCtx= useContext(CartContext);
+  const amountInputRef = useRef();
+
+  const addToCartHandler = amount =>{
+    cartCtx.addItem({
+      id:props.id,
+      name:props.name,
+      amount:amount,
+      price:props.price
+    });
+  };
+  
+  const submitHandler = event =>{
+    event.preventDefault();
+
+    const enteredAmount = amountInputRef.current.value;
+    const enteredAmountNumber = +enteredAmount; //plus sign converts it into number
+
+    addToCartHandler(enteredAmountNumber);
+  };
 
   return (
     <React.Fragment>
@@ -17,10 +35,10 @@ function MealIndividual(props) {
           <div className={styles.description}>{props.description}</div>
           <div className={styles.price}>{props.price}</div>
         </div>
-        <div className={classes.form}>
-          <Input counts={count} id={props.id}/>
-          <button onClick={clickHandler}>+Add</button>
-        </div>
+        <form className={classes.form} onSubmit={submitHandler}>
+          <Input ref={amountInputRef} id={props.id}/>
+          <button>+Add</button>
+        </form>
       </li>
     </React.Fragment>
   );

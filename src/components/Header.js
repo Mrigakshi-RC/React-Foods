@@ -7,7 +7,7 @@ import CartContext from "../store/cart-context";
 
 function Header(props) {
   const cartCtx = useContext(CartContext);
-  const numberOfCartItems = cartCtx.item.reduce((curNumber, i)=>{return curNumber+ i.amount},0);
+  const numberOfCartItems = cartCtx.items.reduce((curNumber, item)=>{return curNumber+ item.amount},0);
   return (
     <React.Fragment>
       <header className={styles.header}>

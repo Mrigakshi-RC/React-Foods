@@ -7,17 +7,17 @@ const Backdrop = (props) => {
 };
 
 const ModalOverlay = (props) => {
-  // const cartItems = (
-  //   <ul className={classes["cart-items"]}>
-  //     {[{ id: "c1", name: "Sushi", amount: 2, price: 12.99 }].map((item) => (
-  //       <li>{item.name}</li>
-  //     ))}
-  //   </ul>
-  // );
+  const cartItems = (
+    <ul className={styles["cart-items"]}>
+      {[{ id: "c1", name: "Sushi", amount: 2, price: 12.99 }].map((item) => (
+        <li>{item.name}</li>
+      ))}
+    </ul>
+  );
 
   return (
     <div className={styles.modal}>
-      {/* {cartItems} */}
+      {cartItems}
       <div className={styles.totalContainer}>
         <h3>Total Amount</h3>
         <h3>$0.00</h3>

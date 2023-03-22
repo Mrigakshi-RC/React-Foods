@@ -1,14 +1,13 @@
 import inputs from "./Input.module.css";
 import React from "react";
 
-function Input(props) {
-  const doSomething=()=>{};
+const Input = React.forwardRef((props,ref) => {
   return (
     <form className={inputs.input}>
-      <label htmlFor="add">Amount</label>
-      <input onChange={doSomething} type="number" id={props.id} value={props.counts}/>
+      <label htmlFor={props.id}>Amount</label>
+      <input ref={ref} type="number" id={props.id} step= '1' defaultValue= '1'/>
     </form>
   );
-}
+});
 
 export default Input;
