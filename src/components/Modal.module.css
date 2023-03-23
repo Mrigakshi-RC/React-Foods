@@ -56,10 +56,6 @@
   color: white;
 }
 
-.cart-items{
-  
-}
-
 @media (min-width: 768px) {
   .modal {
     width: 40rem;
