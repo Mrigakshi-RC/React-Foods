@@ -1,7 +1,7 @@
 import styles from "./Header.module.css";
 import classes from "./HeaderCartButton.module.css";
 import CartIcon from "./CartIcon"
-import background from "../images/meals.jpg"
+import background from "../images/meals2.jpg"
 import React, {useContext, useEffect, useState} from "react";
 import CartContext from "../store/cart-context";
 
@@ -31,7 +31,7 @@ function Header(props) {
   return (
     <React.Fragment>
       <header className={styles.header}>
-        <h1>ReactMeals</h1>
+        <h1>ReactFoods</h1>
         <button className={btnClasses} onClick={props.cartClick}>
           <CartIcon className={classes.icon}/>
           <p>Your Cart</p>
