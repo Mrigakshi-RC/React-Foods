@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import styles from "./Modal.module.css";
-import classes from "./Cart/Cart.module.css";
+import classes from "./Cart.module.css";
 import ReactDOM from "react-dom";
 import CartContext from "../store/cart-context";
-import CartItem from "./Cart/CartItem";
+import CartItem from "./CartItem";
 
 const Backdrop = (props) => {
   return <div className={styles.backdrop} onClick={props.close}></div>;
