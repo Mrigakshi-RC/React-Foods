@@ -1,15 +1,17 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./Modal.module.css";
 import classes from "./Cart.module.css";
 import ReactDOM from "react-dom";
 import CartContext from "../store/cart-context";
 import CartItem from "./CartItem";
+import Checkout from "./checkout";
 
 const Backdrop = (props) => {
   return <div className={styles.backdrop} onClick={props.close}></div>;
 };
 
 const ModalOverlay = (props) => {
+  const [isCheckout, setIsCheckout] = useState(false);
   const cartCtx = useContext(CartContext);
 
   const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
@@ -19,7 +21,11 @@ const ModalOverlay = (props) => {
     cartCtx.removeItem(id);
   };
   const cartItemAddHandler = (item) => {
-    cartCtx.addItem({...item, amount:1});
+    cartCtx.addItem({ ...item, amount: 1 });
+  };
+
+  const orderHandler = () => {
+    setIsCheckout(true);
   };
 
   const cartItems = (
@@ -37,6 +43,19 @@ const ModalOverlay = (props) => {
     </ul>
   );
 
+  const modalActions = (
+    <div className={styles.buttonContainer}>
+      <button onClick={props.close} className={styles.close}>
+        close
+      </button>
+      {hasItems && (
+        <button className={styles.order} onClick={orderHandler}>
+          Order
+        </button>
+      )}
+    </div>
+  );
+
   return (
     <div className={styles.modal}>
       {cartItems}
@@ -44,12 +63,8 @@ const ModalOverlay = (props) => {
         <h3>Total Amount</h3>
         <h3>{totalAmount}</h3>
       </div>
-      <div className={styles.buttonContainer}>
-        <button onClick={props.close} className={styles.close}>
-          close
-        </button>
-        {hasItems && <button className={styles.order}>Order</button>}
-      </div>
+      {!isCheckout && modalActions}
+      {isCheckout && <Checkout onCancel={props.close}/>}
     </div>
   );
 };
