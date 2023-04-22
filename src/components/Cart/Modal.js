@@ -28,6 +28,16 @@ const ModalOverlay = (props) => {
     setIsCheckout(true);
   };
 
+  const submitOrderHandler=(userData)=>{
+    fetch("https://custom-http-hook-3840b-default-rtdb.firebaseio.com/orders.json",{
+      method:"POST",
+      body: JSON.stringify({
+        user:userData,
+        orderedItems:cartCtx.items
+      })
+    });
+  }
+
   const cartItems = (
     <ul className={classes["cart-items"]}>
       {cartCtx.items.map((item) => (
@@ -64,7 +74,7 @@ const ModalOverlay = (props) => {
         <h3>{totalAmount}</h3>
       </div>
       {!isCheckout && modalActions}
-      {isCheckout && <Checkout onCancel={props.close}/>}
+      {isCheckout && <Checkout onCancel={props.close} onConfirm={submitOrderHandler}/>}
     </div>
   );
 };
