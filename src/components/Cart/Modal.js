@@ -45,6 +45,7 @@ const ModalOverlay = (props) => {
     ).then(() => {
       setIsSubmitting(false);
       setDidSubmit(true);
+      cartCtx.clearCart();
     });
   };
 
