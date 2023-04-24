@@ -12,6 +12,9 @@ const Backdrop = (props) => {
 
 const ModalOverlay = (props) => {
   const [isCheckout, setIsCheckout] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [didSubmit, setDidSubmit] = useState(false);
+
   const cartCtx = useContext(CartContext);
 
   const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
@@ -28,15 +31,22 @@ const ModalOverlay = (props) => {
     setIsCheckout(true);
   };
 
-  const submitOrderHandler=(userData)=>{
-    fetch("https://custom-http-hook-3840b-default-rtdb.firebaseio.com/orders.json",{
-      method:"POST",
-      body: JSON.stringify({
-        user:userData,
-        orderedItems:cartCtx.items
-      })
+  const submitOrderHandler = (userData) => {
+    setIsSubmitting(true);
+    fetch(
+      "https://custom-http-hook-3840b-default-rtdb.firebaseio.com/orders.json",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          user: userData,
+          orderedItems: cartCtx.items,
+        }),
+      }
+    ).then(() => {
+      setIsSubmitting(false);
+      setDidSubmit(true);
     });
-  }
+  };
 
   const cartItems = (
     <ul className={classes["cart-items"]}>
@@ -66,15 +76,46 @@ const ModalOverlay = (props) => {
     </div>
   );
 
-  return (
-    <div className={styles.modal}>
+  const ModalContent = (
+    <React.Fragment>
       {cartItems}
       <div className={styles.totalContainer}>
         <h3>Total Amount</h3>
         <h3>{totalAmount}</h3>
       </div>
       {!isCheckout && modalActions}
-      {isCheckout && <Checkout onCancel={props.close} onConfirm={submitOrderHandler}/>}
+      {isCheckout && (
+        <Checkout onCancel={props.close} onConfirm={submitOrderHandler} />
+      )}
+    </React.Fragment>
+  );
+
+  const isSubmittingContent = (
+    <React.Fragment>
+      <p>Sending Data</p>
+      <div className={styles.buttonContainer}>
+        <button onClick={props.close} className={styles.close}>
+          close
+        </button>
+      </div>
+    </React.Fragment>
+  );
+  const didSubmitContent = (
+    <React.Fragment>
+      <p>Successfully sent the order!</p>
+      <div className={styles.buttonContainer}>
+        <button onClick={props.close} className={styles.close}>
+          close
+        </button>
+      </div>
+    </React.Fragment>
+  );
+
+  return (
+    <div className={styles.modal}>
+      {!isSubmitting && !didSubmit && ModalContent}
+      {isSubmitting && !didSubmit && isSubmittingContent}
+      {!isSubmitting && didSubmit && didSubmitContent}
     </div>
   );
 };
