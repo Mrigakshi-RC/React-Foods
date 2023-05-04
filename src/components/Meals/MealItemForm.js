@@ -11,7 +11,7 @@ function MealItemForm() {
   let loadedMeals = [];
   useEffect(() => {
     fetch(
-      "https://custom-http-hook-3840b-default-rtdb.firebaseio.com/meals.json"
+      'https://custom-http-hook-3840b-default-rtdb.firebaseio.com/meals.json'
     )
       .then((response) => {
         return response.json();
